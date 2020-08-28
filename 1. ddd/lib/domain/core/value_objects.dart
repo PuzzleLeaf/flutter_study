@@ -8,6 +8,8 @@ abstract class ValueObjects<T> {
   ValueObjects();
   Either<ValueFailure<T>, T> value;
 
+  bool isValid() => value.isRight();
+
   @override
   String toString() => 'EmailAddress($value)';
 
