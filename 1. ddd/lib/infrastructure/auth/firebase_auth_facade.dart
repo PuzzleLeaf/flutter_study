@@ -80,7 +80,8 @@ class FirebaseAuthFacade extends IAuthFacade {
       } else {}
 
       final googleAuthentication = await googleUser.authentication;
-      final authCredential = GoogleAuthProvider.credential(
+
+      final authCredential = GoogleAuthProvider.getCredential(
           idToken: googleAuthentication.idToken,
           accessToken: googleAuthentication.accessToken);
 
