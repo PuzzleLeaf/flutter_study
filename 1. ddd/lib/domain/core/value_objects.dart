@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain_driven/domain/core/errors.dart';
 import 'package:domain_driven/domain/core/failures.dart';
+import 'package:uuid/uuid.dart';
 
 abstract class ValueObjects<T> {
   ValueObjects();
@@ -27,4 +28,24 @@ abstract class ValueObjects<T> {
 
   @override
   int get hashCode => value.hashCode;
+}
+
+class UniqueId extends ValueObjects<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory UniqueId() {
+    return UniqueId._(
+      right(Uuid().v1()),
+    );
+  }
+
+  factory UniqueId.fromUniqueString(String uniqueId) {
+    assert(uniqueId != null);
+    return UniqueId._(
+      right(uniqueId),
+    );
+  }
+
+  UniqueId._(this.value);
 }
