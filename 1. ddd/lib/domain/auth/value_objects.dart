@@ -16,6 +16,7 @@ class EmailAddress extends ValueObjects<String> {
 }
 
 class Password extends ValueObjects<String> {
+  @override
   final Either<ValueFailure<String>, String> value;
 
   factory Password(String input) {
